@@ -37,25 +37,26 @@
             this.txtJSONFile = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmdSelectJSONFile = new System.Windows.Forms.Button();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
+            this.btnApply = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numInterval)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdSave
             // 
-            this.cmdSave.Location = new System.Drawing.Point(15, 102);
+            this.cmdSave.Location = new System.Drawing.Point(20, 93);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(75, 23);
             this.cmdSave.TabIndex = 0;
-            this.cmdSave.Text = "&Save";
+            this.cmdSave.Text = "&Ok";
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // cmdCancel
             // 
             this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cmdCancel.Location = new System.Drawing.Point(96, 102);
+            this.cmdCancel.Location = new System.Drawing.Point(101, 93);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 1;
@@ -65,7 +66,7 @@
             // 
             // numInterval
             // 
-            this.numInterval.Location = new System.Drawing.Point(92, 45);
+            this.numInterval.Location = new System.Drawing.Point(90, 12);
             this.numInterval.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -88,7 +89,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 47);
+            this.label1.Location = new System.Drawing.Point(10, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 3;
@@ -97,7 +98,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(150, 47);
+            this.label2.Location = new System.Drawing.Point(148, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 4;
@@ -110,15 +111,15 @@
             // 
             // txtJSONFile
             // 
-            this.txtJSONFile.Location = new System.Drawing.Point(92, 71);
+            this.txtJSONFile.Location = new System.Drawing.Point(90, 38);
             this.txtJSONFile.Name = "txtJSONFile";
-            this.txtJSONFile.Size = new System.Drawing.Size(107, 20);
+            this.txtJSONFile.Size = new System.Drawing.Size(146, 20);
             this.txtJSONFile.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 74);
+            this.label3.Location = new System.Drawing.Point(10, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 13);
             this.label3.TabIndex = 6;
@@ -126,7 +127,7 @@
             // 
             // cmdSelectJSONFile
             // 
-            this.cmdSelectJSONFile.Location = new System.Drawing.Point(205, 71);
+            this.cmdSelectJSONFile.Location = new System.Drawing.Point(242, 37);
             this.cmdSelectJSONFile.Name = "cmdSelectJSONFile";
             this.cmdSelectJSONFile.Size = new System.Drawing.Size(26, 20);
             this.cmdSelectJSONFile.TabIndex = 7;
@@ -134,25 +135,36 @@
             this.cmdSelectJSONFile.UseVisualStyleBackColor = true;
             this.cmdSelectJSONFile.Click += new System.EventHandler(this.cmdSelectJSONFile_Click);
             // 
-            // btnStart
+            // btnApply
             // 
-            this.btnStart.Location = new System.Drawing.Point(15, 12);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 8;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.btnApply.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnApply.Location = new System.Drawing.Point(182, 93);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(75, 23);
+            this.btnApply.TabIndex = 10;
+            this.btnApply.Text = "&Apply";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
-            // btnStop
+            // btnPrev
             // 
-            this.btnStop.Location = new System.Drawing.Point(139, 12);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 9;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            this.btnPrev.Location = new System.Drawing.Point(67, 64);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(75, 23);
+            this.btnPrev.TabIndex = 11;
+            this.btnPrev.Text = "<< Prev";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(148, 64);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.TabIndex = 12;
+            this.btnNext.Text = "Next >>";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // ConfigForm
             // 
@@ -160,9 +172,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cmdCancel;
-            this.ClientSize = new System.Drawing.Size(245, 137);
-            this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.btnStart);
+            this.ClientSize = new System.Drawing.Size(280, 126);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnPrev);
+            this.Controls.Add(this.btnApply);
             this.Controls.Add(this.cmdSelectJSONFile);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtJSONFile);
@@ -193,8 +206,9 @@
         private System.Windows.Forms.TextBox txtJSONFile;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button cmdSelectJSONFile;
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnNext;
     }
 }
 

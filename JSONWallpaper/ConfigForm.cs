@@ -18,11 +18,6 @@ namespace JSONWallpaper
             switcher = ws;
             numInterval.Value = switcher.IntervalInMinutes;
             txtJSONFile.Text = switcher.JSONFilename;
-
-            btnStart.Enabled = !switcher.IsRunning;
-            btnStop.Enabled = switcher.IsRunning;
-
-
         }
 
         public ConfigForm()
@@ -37,7 +32,7 @@ namespace JSONWallpaper
 
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            switcher.IntervalInMinutes = (int)numInterval.Value;
+            switcher.IntervalInMinutes = (uint)numInterval.Value;
             switcher.JSONFilename = txtJSONFile.Text;
             switcher.SaveSettings();
             this.Close();
@@ -57,20 +52,29 @@ namespace JSONWallpaper
             txtJSONFile.Text = openFileDialog1.FileName;
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void btnApply_Click(object sender, EventArgs e)
         {
-            switcher.Start();
-
-            btnStart.Enabled = false;
-            btnStop.Enabled = true;
+            switcher.IntervalInMinutes = (uint)numInterval.Value;
+            switcher.JSONFilename = txtJSONFile.Text;
+            switcher.SaveSettings();
         }
 
-        private void btnStop_Click(object sender, EventArgs e)
+        private void btnPrev_Click(object sender, EventArgs e)
         {
-            switcher.Stop();
-            btnStart.Enabled = true;
-            btnStop.Enabled = false;
+            btnPrev.Enabled = false;
+            btnNext.Enabled = false;
+            switcher.ChangeToPrevWallpaper();
+            btnPrev.Enabled = true;
+            btnNext.Enabled = true;
         }
 
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            btnPrev.Enabled = false;
+            btnNext.Enabled = false;
+            switcher.ChangeToNextWallpaper();
+            btnPrev.Enabled = true;
+            btnNext.Enabled = true;
+        }
     }
 }

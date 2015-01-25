@@ -45,6 +45,7 @@ namespace JSONWallpaper
         {
             if (disposing)
             {
+                if(ws != null) { ws.Dispose(); }
                 if(components != null) { components.Dispose(); }
                 if(configForm != null) { configForm.Dispose(); }
             }

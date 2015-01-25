@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -20,7 +21,7 @@ namespace JSONWallpaper
         const UInt32 SPIF_SENDWININICHANGE = 0x02;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        static extern UInt32 SystemParametersInfo(UInt32 uiAction, UInt32 uiParam, String pvParam, UInt32 fWinIni);
+        static extern bool SystemParametersInfo(UInt32 uiAction, UInt32 uiParam, String pvParam, UInt32 fWinIni);
 
         public enum Style : int
         {
@@ -29,53 +30,53 @@ namespace JSONWallpaper
             Stretched
         }
 
-        public static void Set(Uri uri, Style style)
+        public static bool Set(Uri uri, Style style)
         {
-            Stream f = null;
-
-            try
+            using(Stream f = new System.Net.WebClient().OpenRead(uri.ToString()))
             {
-                f = new System.Net.WebClient().OpenRead(uri.ToString());
-                Set(f, style);
-            }
-            catch
-            {
-            }
-            finally
-            {
-                if (f != null)
-                {
-                    f.Close();
-                }
+                return Set(f, style);
             }
         }
 
-        public static void Set(String FileName, Style style)
+        public static bool Set(String FileName, Style style)
         {
-            FileStream f = null;
-
-            try
-            {
-                f = new FileStream(FileName, FileMode.Open, FileAccess.Read);
-                Set(f, style);
-            }
-            catch
-            {
-            }
-            finally
-            {
-                if (f != null)
-                {
-                    f.Close();
-                }
-            }
+             using (FileStream f = new FileStream(FileName, FileMode.Open, FileAccess.Read))
+             {
+                 return Set(f, style);
+             }
         }
 
-        public static void Set(System.IO.Stream IOStream, Style style)
+        public static bool Set(System.IO.Stream IOStream, Style style)
         {
-            System.Drawing.Image img = System.Drawing.Image.FromStream(IOStream);
             string tempPath = Path.Combine(Path.GetTempPath(), "wallpaper.bmp");
-            img.Save(tempPath, System.Drawing.Imaging.ImageFormat.Bmp);
+            int attempts = 10;
+            bool successful = false;
+
+
+            using(System.Drawing.Image img = System.Drawing.Image.FromStream(IOStream))
+            {
+                while (successful == false && attempts > 0)
+                {
+                    try
+                    {
+                        img.Save(tempPath, System.Drawing.Imaging.ImageFormat.Bmp);
+                        successful = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("Img save failed " + ex.Message);
+                        attempts = attempts - 1;
+                    }
+                }
+            }
+
+            if(successful == false)
+            {
+                return false;
+            }
+
+            successful = false;
+            attempts = 10;
 
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true);
             if (style == Style.Stretched)
@@ -96,10 +97,21 @@ namespace JSONWallpaper
                 key.SetValue(@"TileWallpaper", 1.ToString());
             }
 
-            SystemParametersInfo(SPI_SETDESKWALLPAPER,
-                0,
-                tempPath,
-                SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
+            //SystemParametersInfo fails for no apparent reason several times.
+            while(successful == false && attempts > 0)
+            {
+                try
+                {
+                    successful = SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, tempPath, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
+                }
+                catch(Exception ex)
+                {
+                    Debug.WriteLine("Set failed " + ex.Message);
+                    attempts = attempts - 1;
+                }
+            }
+
+            return successful;
         }
     }
 }
