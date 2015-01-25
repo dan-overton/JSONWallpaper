@@ -101,5 +101,13 @@ namespace JSONWallpaper
         {
             ShowConfigForm();
         }
+
+        protected override void ExitThreadCore()
+        {
+            //This is called by ExitThread()
+            if (configForm != null) { configForm.Close(); }
+            theIcon.Visible = false;
+            base.ExitThreadCore();
+        }
     }
 }

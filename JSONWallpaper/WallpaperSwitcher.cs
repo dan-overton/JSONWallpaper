@@ -23,6 +23,7 @@ namespace JSONWallpaper
         private System.Timers.Timer timer = null;
         private int _IntervalInMilliseconds;
         private string _JSONFilename;
+
         public bool IsRunning 
         { 
             get
