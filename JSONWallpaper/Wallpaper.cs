@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace JSONWallpaper
@@ -66,6 +67,7 @@ namespace JSONWallpaper
                     {
                         Debug.WriteLine("Img save failed " + ex.Message);
                         attempts = attempts - 1;
+                        Thread.Sleep(1000);
                     }
                 }
             }
@@ -108,6 +110,7 @@ namespace JSONWallpaper
                 {
                     Debug.WriteLine("Set failed " + ex.Message);
                     attempts = attempts - 1;
+                    Thread.Sleep(1000);
                 }
             }
 

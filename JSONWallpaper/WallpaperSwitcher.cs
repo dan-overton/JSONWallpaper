@@ -127,12 +127,23 @@ namespace JSONWallpaper
 
         private void ChangeWallpaper(uint index)
         {
+            bool setWorked = false;
             if(index >= records.Count())
             {
                 throw new Exception("Invalid Wallpaper Index Specified: " + index);
             }
 
-            if (Wallpaper.Set(records[index].url, Wallpaper.Style.Stretched) == false)
+            try
+            {
+                setWorked = Wallpaper.Set(records[index].url, Wallpaper.Style.Stretched);
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("Set exceptioned: " + ex.Message);
+                setWorked = true; //skip to next one for next attempt.
+            }
+
+            if (setWorked == false)
             {
                 Debug.WriteLine("Set failed");
             }
