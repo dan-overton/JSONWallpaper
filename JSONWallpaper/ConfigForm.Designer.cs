@@ -42,6 +42,7 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.chkRunOnStartup = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblRunning = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numInterval)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,6 +188,15 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "Run On Startup";
             // 
+            // lblRunning
+            // 
+            this.lblRunning.AutoSize = true;
+            this.lblRunning.Location = new System.Drawing.Point(145, 65);
+            this.lblRunning.Name = "lblRunning";
+            this.lblRunning.Size = new System.Drawing.Size(199, 13);
+            this.lblRunning.TabIndex = 15;
+            this.lblRunning.Text = "Status: Not Running - Check Parameters";
+            // 
             // ConfigForm
             // 
             this.AcceptButton = this.cmdSave;
@@ -194,6 +204,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cmdCancel;
             this.ClientSize = new System.Drawing.Size(378, 113);
+            this.Controls.Add(this.lblRunning);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.chkRunOnStartup);
             this.Controls.Add(this.btnNext);
@@ -235,6 +246,7 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.CheckBox chkRunOnStartup;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblRunning;
     }
 }
 

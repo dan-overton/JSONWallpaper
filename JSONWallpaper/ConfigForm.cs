@@ -18,7 +18,18 @@ namespace JSONWallpaper
             switcher = ws;
             numInterval.Value = switcher.IntervalInMinutes;
             txtJSONFile.Text = switcher.JSONFilename;
-            chkRunOnStartup.Checked = switcher.RunsOnStartup;
+            chkRunOnStartup.Checked = switcher.RunsAtStartUp;
+
+            btnNext.Enabled = switcher.IsRunning;
+            btnPrev.Enabled = switcher.IsRunning;
+            if (switcher.IsRunning)
+            {
+                lblRunning.Text = "Status: " + "Running";
+            }
+            else
+            {
+                lblRunning.Text = "Status: " + "Not Running - Check Parameters";
+            }
         }
 
         public ConfigForm()
@@ -33,10 +44,25 @@ namespace JSONWallpaper
 
         private void SaveSettings()
         {
-            switcher.IntervalInMinutes = (uint)numInterval.Value;
-            switcher.JSONFilename = txtJSONFile.Text;
-            switcher.RunsOnStartup = chkRunOnStartup.Checked;
-            switcher.SaveSettings();
+            try
+            {
+                switcher.Start((uint)numInterval.Value, txtJSONFile.Text, chkRunOnStartup.Checked);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Could not start: " + ex.Message);
+            }
+
+            btnNext.Enabled = switcher.IsRunning;
+            btnPrev.Enabled = switcher.IsRunning;
+            if(switcher.IsRunning)
+            {
+                lblRunning.Text = "Status: " + "Running";
+            }
+            else
+            {
+                lblRunning.Text = "Status: " + "Not Running - Check Parameters";
+            }
         }
 
         private void cmdSave_Click(object sender, EventArgs e)
