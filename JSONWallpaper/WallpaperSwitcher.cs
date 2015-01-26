@@ -34,6 +34,8 @@ namespace JSONWallpaper
             }
         }
 
+        public bool RunsOnStartup { get; set; }
+
         public string JSONFilename 
         { 
             get
@@ -115,14 +117,31 @@ namespace JSONWallpaper
             IntervalInMinutes = uint.Parse((string)key.GetValue(@"IntervalInMinutes", "1"));
             JSONFilename = (string)key.GetValue(@"JSONFilename", Path.Combine(Path.GetDirectoryName(Application.ExecutablePath),"backgrounds.json"));
             nextWallpaperIndex = uint.Parse((string)key.GetValue(@"RecordIndex", "0"));
+
+            RegistryKey startupKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
+            RunsOnStartup = ((string)startupKey.GetValue("JSONWallpaper", "notfound") != "notfound");
         }
 
         public void SaveSettings()
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\JSONWallpaper", true);
-            key.SetValue(@"IntervalInMinutes", IntervalInMinutes.ToString());
-            key.SetValue(@"JSONFilename", JSONFilename);
-            key.SetValue(@"RecordIndex", nextWallpaperIndex.ToString());
+            key.SetValue("IntervalInMinutes", IntervalInMinutes.ToString());
+            key.SetValue("JSONFilename", JSONFilename);
+            key.SetValue("RecordIndex", nextWallpaperIndex.ToString());
+
+            RegistryKey startupKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
+
+            if(RunsOnStartup)
+            {   
+                startupKey.SetValue("JSONWallpaper", Application.ExecutablePath);
+            }
+            else
+            {
+                if ((string)startupKey.GetValue("JSONWallpaper", "notfound") != "notfound")
+                {
+                    startupKey.DeleteValue("JSONWallpaper");
+                }
+            }
         }
 
         private void ChangeWallpaper(uint index)

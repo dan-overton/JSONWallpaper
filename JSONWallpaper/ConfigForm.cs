@@ -18,6 +18,7 @@ namespace JSONWallpaper
             switcher = ws;
             numInterval.Value = switcher.IntervalInMinutes;
             txtJSONFile.Text = switcher.JSONFilename;
+            chkRunOnStartup.Checked = switcher.RunsOnStartup;
         }
 
         public ConfigForm()
@@ -30,11 +31,17 @@ namespace JSONWallpaper
             this.Close();
         }
 
-        private void cmdSave_Click(object sender, EventArgs e)
+        private void SaveSettings()
         {
             switcher.IntervalInMinutes = (uint)numInterval.Value;
             switcher.JSONFilename = txtJSONFile.Text;
+            switcher.RunsOnStartup = chkRunOnStartup.Checked;
             switcher.SaveSettings();
+        }
+
+        private void cmdSave_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
             this.Close();
         }
 
@@ -54,9 +61,7 @@ namespace JSONWallpaper
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            switcher.IntervalInMinutes = (uint)numInterval.Value;
-            switcher.JSONFilename = txtJSONFile.Text;
-            switcher.SaveSettings();
+            SaveSettings();
         }
 
         private void btnPrev_Click(object sender, EventArgs e)

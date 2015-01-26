@@ -40,12 +40,14 @@
             this.btnApply = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
+            this.chkRunOnStartup = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numInterval)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdSave
             // 
-            this.cmdSave.Location = new System.Drawing.Point(20, 93);
+            this.cmdSave.Location = new System.Drawing.Point(139, 86);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(75, 23);
             this.cmdSave.TabIndex = 0;
@@ -56,7 +58,7 @@
             // cmdCancel
             // 
             this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cmdCancel.Location = new System.Drawing.Point(101, 93);
+            this.cmdCancel.Location = new System.Drawing.Point(220, 86);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 1;
@@ -66,7 +68,7 @@
             // 
             // numInterval
             // 
-            this.numInterval.Location = new System.Drawing.Point(90, 12);
+            this.numInterval.Location = new System.Drawing.Point(100, 12);
             this.numInterval.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -98,7 +100,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(148, 14);
+            this.label2.Location = new System.Drawing.Point(158, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 4;
@@ -111,9 +113,9 @@
             // 
             // txtJSONFile
             // 
-            this.txtJSONFile.Location = new System.Drawing.Point(90, 38);
+            this.txtJSONFile.Location = new System.Drawing.Point(100, 38);
             this.txtJSONFile.Name = "txtJSONFile";
-            this.txtJSONFile.Size = new System.Drawing.Size(146, 20);
+            this.txtJSONFile.Size = new System.Drawing.Size(244, 20);
             this.txtJSONFile.TabIndex = 5;
             // 
             // label3
@@ -127,7 +129,7 @@
             // 
             // cmdSelectJSONFile
             // 
-            this.cmdSelectJSONFile.Location = new System.Drawing.Point(242, 37);
+            this.cmdSelectJSONFile.Location = new System.Drawing.Point(350, 38);
             this.cmdSelectJSONFile.Name = "cmdSelectJSONFile";
             this.cmdSelectJSONFile.Size = new System.Drawing.Size(26, 20);
             this.cmdSelectJSONFile.TabIndex = 7;
@@ -138,7 +140,7 @@
             // btnApply
             // 
             this.btnApply.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnApply.Location = new System.Drawing.Point(182, 93);
+            this.btnApply.Location = new System.Drawing.Point(301, 86);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 10;
@@ -148,23 +150,42 @@
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(67, 64);
+            this.btnPrev.Location = new System.Drawing.Point(9, 86);
             this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(75, 23);
+            this.btnPrev.Size = new System.Drawing.Size(62, 23);
             this.btnPrev.TabIndex = 11;
-            this.btnPrev.Text = "<< Prev";
+            this.btnPrev.Text = "<<";
             this.btnPrev.UseVisualStyleBackColor = true;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(148, 64);
+            this.btnNext.Location = new System.Drawing.Point(71, 86);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.Size = new System.Drawing.Size(62, 23);
             this.btnNext.TabIndex = 12;
-            this.btnNext.Text = "Next >>";
+            this.btnNext.Text = ">>";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // chkRunOnStartup
+            // 
+            this.chkRunOnStartup.AutoSize = true;
+            this.chkRunOnStartup.Location = new System.Drawing.Point(100, 64);
+            this.chkRunOnStartup.Name = "chkRunOnStartup";
+            this.chkRunOnStartup.Size = new System.Drawing.Size(15, 14);
+            this.chkRunOnStartup.TabIndex = 13;
+            this.chkRunOnStartup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkRunOnStartup.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Run On Startup";
             // 
             // ConfigForm
             // 
@@ -172,7 +193,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cmdCancel;
-            this.ClientSize = new System.Drawing.Size(280, 126);
+            this.ClientSize = new System.Drawing.Size(378, 113);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.chkRunOnStartup);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.btnApply);
@@ -188,6 +211,7 @@
             this.MinimizeBox = false;
             this.Name = "ConfigForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JSONWallpaper";
             ((System.ComponentModel.ISupportInitialize)(this.numInterval)).EndInit();
             this.ResumeLayout(false);
@@ -209,6 +233,8 @@
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.CheckBox chkRunOnStartup;
+        private System.Windows.Forms.Label label4;
     }
 }
 
