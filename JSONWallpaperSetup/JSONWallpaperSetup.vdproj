@@ -21,19 +21,25 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_278E3DEA9EB34CE980FFE8237CB9EF0F"
+        "MsmKey" = "8:_8CFE158006A748078E8A4041B61DB9DF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_8D03AA80E184E068FC557F6FF8917A94"
-        "OwnerKey" = "8:_278E3DEA9EB34CE980FFE8237CB9EF0F"
+        "OwnerKey" = "8:_FCACFF5245BF4755877F5C5462680CAF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_BC85B81C7B03498F960EC21FCE6B3569"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FCACFF5245BF4755877F5C5462680CAF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -46,7 +52,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_278E3DEA9EB34CE980FFE8237CB9EF0F"
+        "OwnerKey" = "8:_FCACFF5245BF4755877F5C5462680CAF"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -67,6 +73,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -83,12 +105,42 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_ADDC1A8C61474A58AD306D20CFF51BC2"
+            {
+            "Name" = "8:Primary output from JSONWallpaper (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_FCACFF5245BF4755877F5C5462680CAF"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:INSTALLER"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_05C7FCBE_2663_403F_9126_B17B2819CA59"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -116,6 +168,26 @@
             {
             "SourcePath" = "8:..\\Readme.txt"
             "TargetName" = "8:Readme.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_52C40D3669C8438786638154A524939F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8CFE158006A748078E8A4041B61DB9DF"
+            {
+            "SourcePath" = "8:..\\backgrounds.json"
+            "TargetName" = "8:backgrounds.json"
             "Tag" = "8:"
             "Folder" = "8:_52C40D3669C8438786638154A524939F"
             "Condition" = "8:"
@@ -193,7 +265,7 @@
             {
             "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
             "Name" = "8:#1925"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:TARGETDIR"
@@ -204,7 +276,7 @@
             "{1525181F-901A-416C-8A58-119130FE478E}:_6829A76E2CAC4E72A84AA19500663866"
             {
             "Name" = "8:#1919"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:ProgramMenuFolder"
@@ -240,12 +312,12 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:JSONWallpaper"
         "ProductCode" = "8:{58E6D961-DD8B-43DA-8107-552FF21701D2}"
-        "PackageCode" = "8:{7DB76B93-B1B7-4FF8-B292-6222977796BA}"
+        "PackageCode" = "8:{F357B7D1-BC09-44C9-A741-293FE6C44937}"
         "UpgradeCode" = "8:{371D6F59-F188-4260-AB5C-1711DDFCC693}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
-        "DetectNewerInstalledVersion" = "11:TRUE"
+        "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:Daniel Overton"
@@ -255,7 +327,7 @@
         "Subject" = "8:"
         "ARPCONTACT" = "8:Daniel Overton"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:Installer for JSONWallpaper"
         "ARPURLINFOABOUT" = "8:https://github.com/doverton51/JSONWallpaper/"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -360,6 +432,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_355D934A66F34F04BCF6AF35940721F6"
+            {
+            "Name" = "8:JSONWallpaper"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_FCACFF5245BF4755877F5C5462680CAF"
+            "Folder" = "8:_6829A76E2CAC4E72A84AA19500663866"
+            "WorkingFolder" = "8:_52C40D3669C8438786638154A524939F"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -759,7 +845,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_278E3DEA9EB34CE980FFE8237CB9EF0F"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FCACFF5245BF4755877F5C5462680CAF"
             {
             "SourcePath" = "8:..\\JSONWallpaper\\obj\\Release\\JSONWallpaper.exe"
             "TargetName" = "8:"
@@ -768,7 +854,7 @@
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
+            "ReadOnly" = "11:TRUE"
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
             "Permanent" = "11:FALSE"

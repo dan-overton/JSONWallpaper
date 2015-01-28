@@ -28,8 +28,9 @@ namespace JSONWallpaper
         public string JSONFilename { get; private set; }
         public uint IntervalInMinutes { get; private set; }
         public bool RunsAtStartUp { get; private set; }
+        public ConfigForm ConfigForm = null;
 
-        public WallpaperSwitcher()
+        public WallpaperSwitcher(string[] args)
         {
             LoadSettings();
             try
@@ -39,6 +40,11 @@ namespace JSONWallpaper
             catch(Exception ex)
             {
                 Debug.Write("Could not start: " + ex.Message);
+            }
+
+            if (args.Contains<string>("showConfig"))
+            {
+                ShowConfigForm();
             }
         }
 
@@ -150,6 +156,10 @@ namespace JSONWallpaper
                 {
                     Debug.WriteLine("Set exceptioned: " + ex.Message);
                     setWorked = true; //skip to next one for next attempt.
+                    if(ConfigForm != null)
+                    {
+                        MessageBox.Show("Could not load wallpaper: " + ex.Message);
+                    }
                 }
 
                 if (setWorked == false)
@@ -185,8 +195,27 @@ namespace JSONWallpaper
             ChangeToNextWallpaper();
         }
 
+        public void ShowConfigForm()
+        {
+            if (ConfigForm == null)
+            {
+                ConfigForm = new ConfigForm(this);
+                ConfigForm.Closed += ((s,e) => ConfigForm = null);
+                ConfigForm.Show();
+            }
+            else
+            {
+                ConfigForm.Activate();
+            }
+        }
+
         public void Dispose()
         {
+            if(ConfigForm != null)
+            {
+                ConfigForm.Dispose();
+            }
+
             SaveSettings();
             Stop();
         }

@@ -14,17 +14,14 @@ namespace JSONWallpaper
     {
         private System.ComponentModel.IContainer components = null;
         private NotifyIcon theIcon;
-        
-        WallpaperSwitcher ws;
-        
-        ConfigForm configForm = null;
+        private WallpaperSwitcher ws;
 
-        public TrayApplicationContext()
+        public TrayApplicationContext(string[] args)
         {
-            InitializeComponent();
+            InitializeComponent(args);
         }
 
-        private void InitializeComponent()
+        private void InitializeComponent(string[] args)
         {
             components = new System.ComponentModel.Container();
             theIcon = new NotifyIcon(components)
@@ -38,7 +35,7 @@ namespace JSONWallpaper
             theIcon.ContextMenuStrip.Opening += ContextMenuStrip_Opening;
             theIcon.DoubleClick += notifyIcon_DoubleClick;
 
-            ws = new WallpaperSwitcher();
+            ws = new WallpaperSwitcher(args);
         }
 
         protected override void Dispose(bool disposing)
@@ -47,7 +44,6 @@ namespace JSONWallpaper
             {
                 if(ws != null) { ws.Dispose(); }
                 if(components != null) { components.Dispose(); }
-                if(configForm != null) { configForm.Dispose(); }
             }
         }
 
@@ -64,26 +60,7 @@ namespace JSONWallpaper
 
         private void configure_clicked(object sender, EventArgs e)
         {
-            ShowConfigForm();
-        }
-
-        void ShowConfigForm()
-        {
-            if (configForm == null)
-            {
-                configForm = new ConfigForm(ws);
-                configForm.Closed += configForm_close;
-                configForm.Show();
-            }
-            else
-            {
-                configForm.Activate();
-            }
-        }
-
-        private void configForm_close(object sender, EventArgs e)
-        {
-            configForm = null;
+            ws.ShowConfigForm();
         }
 
         private void exit_clicked(object sender, EventArgs e)
@@ -100,13 +77,13 @@ namespace JSONWallpaper
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
         {
-            ShowConfigForm();
+            ws.ShowConfigForm();
         }
 
         protected override void ExitThreadCore()
         {
             //This is called by ExitThread()
-            if (configForm != null) { configForm.Close(); }
+            if (ws.ConfigForm != null) { ws.ConfigForm.Close(); }
             theIcon.Visible = false;
             base.ExitThreadCore();
         }
